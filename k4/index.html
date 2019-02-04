@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aufgabe 4</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet/less" type="text/css" href="styles/style.less">
+    <script src="javascript/less.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="navbar-fixed">
+        <nav class="nav-extended">
+            <div class="nav-wrapper grey darken-3">
+                <a href="#" class="brand-logo right logo-padding">AJAX Loading</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars material-icons"></i></a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li>
+                        <a href="https://developer.mozilla.org/de/docs/Web/HTML/HTML5/HTML5_element_list" target="_blank">
+                            <i class="fab fa-html5 material-icons left"></i>HTML 5
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://developer.mozilla.org/de/docs/Web/CSS/CSS_Referenz" target="_blank">
+                            <i class="fab fa-css3 material-icons left"></i>CSS 3
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/php/default.asp" target="_blank">
+                            <i class="fab fa-php material-icons left"></i>PHP
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://php.net/manual/de/language.oop5.basic.php" target="_blank">
+                            <i class="fas fa-cogs material-icons left"></i>OOP
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://php.net/manual/de/book.sqlite.php" target="_blank">
+                            <i class="fas fa-shapes material-icons left"></i>SQLite
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/js/default.asp" target="_blank">
+                            <i class="fab fa-js material-icons left"></i>javaScript
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/jquery/" target="_blank">
+                            <i class="fas fa-th-large material-icons left"></i>jQuery
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.w3schools.com/jquery/jquery_ref_ajax.asp" target="_blank">
+                            <i class="fas fa-network-wired material-icons left"></i>AJAX
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a href="https://developer.mozilla.org/de/docs/Web/HTML/HTML5/HTML5_element_list" target="_blank">
+                <i class="fab fa-html5 material-icons left"></i>HTML 5
+            </a>
+        </li>
+        <li>
+            <a href="https://developer.mozilla.org/de/docs/Web/CSS/CSS_Referenz" target="_blank">
+                <i class="fab fa-css3 material-icons left"></i>CSS 3
+            </a>
+        </li>
+        <li>
+            <a href="http://www.w3schools.com/php/default.asp" target="_blank">
+                <i class="fab fa-php material-icons left"></i>PHP
+            </a>
+        </li>
+        <li>
+            <a href="http://php.net/manual/de/language.oop5.basic.php" target="_blank">
+                <i class="fas fa-cogs material-icons left"></i>OOP
+            </a>
+        </li>
+        <li>
+            <a href="http://php.net/manual/de/book.sqlite.php" target="_blank">
+                <i class="fas fa-shapes material-icons left"></i>SQLite
+            </a>
+        </li>
+        <li>
+            <a href="http://www.w3schools.com/js/default.asp" target="_blank">
+                <i class="fab fa-js material-icons left"></i>javaScript
+            </a>
+        </li>
+        <li>
+            <a href="http://www.w3schools.com/jquery/" target="_blank">
+                <i class="fas fa-th-large material-icons left"></i>jQuery
+            </a>
+        </li>
+        <li>
+            <a href="http://www.w3schools.com/jquery/jquery_ref_ajax.asp" target="_blank">
+                <i class="fas fa-network-wired material-icons left"></i>AJAX
+            </a>
+        </li>
+    </ul>
+
+    <main>
+        <div class="column">
+            <div class="parallax-container">
+                <h1 class="center grey-text text-darken-4">Modul 307 - Beispielseite</h1>
+                <div class="parallax"><img src="images/hintergrund/hdc.jpg" alt=""></div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 container colordiv">
+                    <div>
+                        <h2>Lorem ipsum</h2>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, quia. Illo fuga optio sed
+                        facere quo molestias. Doloremque dolorem corporis inventore error voluptatem qui mollitia
+                        officia, animi fuga.
+                        <h3>sit amet consectetur</h3>
+                        Cum, atque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia reiciendis quae
+                        obcaecati
+                        natus saepe soluta cum deleniti esse quaerat maxime ipsam eaque debitis quibusdam error
+                        nulla,
+                        velit
+                        magni harum voluptatibus?
+                        <blockquote>Lorem ipsum dolor sit amet consectetur</blockquote>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione tempora
+                        quam sint magnam, nemo laudantium consectetur dolorum, accusantium quod natus quas et
+                        sequi! Iusto,
+                        porro alias quis magnam possimus ipsum. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Eaque
+                        quasi inventore sint dignissimos aliquam eum delectus hic ipsum deserunt, perspiciatis eos
+                        quisquam
+                        pariatur iure earum at vero illum amet quam. Lorem ipsum dolor sit amet consectetur
+                        adipisicing
+                        elit. Suscipit, delectus a. Cumque, a alias. Voluptatibus odit rem id quas enim hic
+                        assumenda,
+                        quaerat, optio expedita pariatur officia ex incidunt aperiam.
+                    </div>
+
+                </div>
+                <div class="col s12 m6">
+                    <nav class="nav-extended grey darken-3">
+                        <div class="nav-content">
+                            <ul class="tabs tabs-transparent">
+                                <li class="tab"><a class="active" href="#seite1">Seite 1</a></li>
+                                <li class="tab"><a href="#auto-page">Autos</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div id="seite1" class="col s12"></div>
+                    <div id="auto-page" class="col s12">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>Kraftstoff</th>
+                                    <th>Farbe</th>
+                                    <th>Bauart</th>
+                                    <th>Tank</th>
+                                    <th>Aktion</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    td
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer class="page-footer grey darken-3 sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Neque, et reiciendis! Magni sint, saepe ut quisquam rem nihil ipsa dicta debitis consequuntur
+                        cupiditate tempora totam, quis impedit ad eius! Enim.
+                        content.</p>
+                    <a class="waves-effect btn tooltipped pulse" id="msg-btn" data-position="bottom" data-tooltip="Click to send a Message">Send
+                        Message</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container date-year">
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="javascript/index.js"></script>
+</body>
+
+</html>

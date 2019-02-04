@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+html,
+body,
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main .container {
+  width: 500px;
+  height: 300px;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.main .container h1 {
+  margin: auto;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html,
+body,
+.main {
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    display: flex;
+
+    .container {
+        width: 500px;
+        height: 300px;
+        transition: all 300ms ease-out;
+
+        h1{
+            margin: auto;
+        }
+    }
+
+}
