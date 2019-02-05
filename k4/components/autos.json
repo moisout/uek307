@@ -1,0 +1,15 @@
+[{
+    "id": 0,
+    "name": "auto1",
+    "kraftstoff": "benzin",
+    "farbe": "schwarz",
+    "bauart": "ka",
+    "tank": "leer"
+}, {
+    "id": 1,
+    "name": "auto2",
+    "kraftstoff": "diesel",
+    "farbe": "rot",
+    "bauart": "hm",
+    "tank": "voll"
+}];
