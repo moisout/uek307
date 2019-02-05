@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aufgabe 4</title>
+    <title>Aufgabe 9</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -113,88 +113,91 @@
     </ul>
 
     <main>
-        <div class="column">
-            <div class="parallax-container">
-                <h1 class="center grey-text text-darken-4">Modul 307 - Beispielseite</h1>
-                <div class="parallax"><img src="images/hintergrund/hdc.jpg" alt=""></div>
-            </div>
+        <div class="container">
             <div class="row">
-                <div class="col s12 m6 container colordiv">
-                    <div>
-                        <h2>Lorem ipsum</h2>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, quia. Illo fuga optio sed
-                        facere quo molestias. Doloremque dolorem corporis inventore error voluptatem qui mollitia
-                        officia, animi fuga.
-                        <h3>sit amet consectetur</h3>
-                        Cum, atque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia reiciendis quae
-                        obcaecati
-                        natus saepe soluta cum deleniti esse quaerat maxime ipsam eaque debitis quibusdam error
-                        nulla,
-                        velit
-                        magni harum voluptatibus?
-                        <blockquote>Lorem ipsum dolor sit amet consectetur</blockquote>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione tempora
-                        quam sint magnam, nemo laudantium consectetur dolorum, accusantium quod natus quas et
-                        sequi! Iusto,
-                        porro alias quis magnam possimus ipsum. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit.
-                        Eaque
-                        quasi inventore sint dignissimos aliquam eum delectus hic ipsum deserunt, perspiciatis eos
-                        quisquam
-                        pariatur iure earum at vero illum amet quam. Lorem ipsum dolor sit amet consectetur
-                        adipisicing
-                        elit. Suscipit, delectus a. Cumque, a alias. Voluptatibus odit rem id quas enim hic
-                        assumenda,
-                        quaerat, optio expedita pariatur officia ex incidunt aperiam.
-                    </div>
-
-                </div>
-                <div class="col s12 m6">
-                    <nav class="nav-extended grey darken-3">
-                        <div class="nav-content">
-                            <ul class="tabs tabs-transparent">
-                                <li class="tab"><a href="#seite1">Seite 1</a></li>
-                                <li class="tab"><a href="#seite2">Seite 2</a></li>
-                                <li class="tab"><a class="active" href="#auto-page">Autos</a></li>
-                            </ul>
+                <form class="col s12 testForm">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="vorname" type="text" class="validate" required>
+                            <label for="vorname">Vorname</label>
                         </div>
-                    </nav>
-                    <div id="seite1" class="col s12"></div>
-                    <div id="seite2" class="col s12"></div>
-                    <div id="auto-page" class="col s12">
-                        <table class="highlight">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>name</th>
-                                    <th>Kraftstoff</th>
-                                    <th>Farbe</th>
-                                    <th>Bauart</th>
-                                    <th>Tank</th>
-                                    <th>Aktion</th>
-                                </tr>
-                            </thead>
-
-                            <tbody class="auto-list">
-                                <tr id="auto_liste_template" data-id="{{id}}">
-                                    <td class="id">{{id}}</td>
-                                    <td class="name"><i class="fas fa-car"></i> {{name}}</td>
-                                    <td class="kraftstoff">{{kraftstoff}}</td>
-                                    <td class="farbe">{{farbe}}</td>
-                                    <td class="bauart">{{bauart}}</td>
-                                    <td class="tank">{{tank}}</td>
-                                    <td class="aktion">
-                                        <div data-id="{{id}}" id="autos_aktion_{{id}}">
-                                            <a class="fuel-btn btn-flat waves-effect tooltipped" data-position="bottom" data-tooltip="Tanken"><i class="fas fa-car material-icons"></i></a>
-                                            <a class="edit-btn btn-flat waves-effect waves-teal tooltipped" data-position="bottom" data-tooltip="Bearbeiten"><i class="fas fa-edit material-icons"></i></a>
-                                            <a class="delete-btn btn-flat waves-effect waves-red tooltipped" data-position="bottom" data-tooltip="Löschen"><i class="fas fa-trash material-icons"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="input-field col s6">
+                            <input id="nachname" type="text" class="validate" required>
+                            <label for="nachname">Nachname</label>
+                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email" type="email" class="validate" required>
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate" min=10 required>
+                            <label for="password">Passwort</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="date" type="text" class="datepicker">
+                            <label for="date">Datum</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="time" type="text" twelveHour=false class="timepicker">
+                            <label for="time">Uhrzeit</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <p>
+                                <label>
+                                    <input name="gender" type="radio" checked />
+                                    <span>Männlich</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="gender" type="radio" />
+                                    <span>Weiblich</span>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <p>
+                                <label>
+                                    <input type="checkbox" checked class="filled-in" />
+                                    <span>Test</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="filled-in" />
+                                    <span>Test2</span>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>Auswahl</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                            <label>Optionen</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input class="btn left" id="reset" type="reset">
+                            <input class="btn right" id="submit" type="submit">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
@@ -210,7 +213,7 @@
                         Neque, et reiciendis! Magni sint, saepe ut quisquam rem nihil ipsa dicta debitis consequuntur
                         cupiditate tempora totam, quis impedit ad eius! Enim.
                         content.</p>
-                    <a class="waves-effect btn tooltipped pulse" id="msg-btn" data-position="bottom" data-tooltip="Click to send a Message">Send
+                    <a class="waves-effect btn tooltipped" id="msg-btn" data-position="bottom" data-tooltip="Click to send a Message">Send
                         Message</a>
                 </div>
             </div>

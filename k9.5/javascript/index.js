@@ -3,6 +3,7 @@ $(function () {
     $('.parallax').parallax();
     $('.tooltipped').tooltip();
     $('.tabs').tabs();
+    $('select').formSelect();
 
 
     $('#msg-btn').on('click', function () {
@@ -14,20 +15,17 @@ $(function () {
 
     $('.date-year').html(`© ${new Date().getFullYear()} Maurice Oegerli`);
 
-    $('#seite1').load('components/page1.html');
-
-    $.ajax({
-        type: "GET",
-        url: "components/page2.json",
-        dataType: "json",
-        success: function (data) {
-            $('#seite2').html(data.data);
-        }
+    $('.colorpicker-custom').on('change', function(){
+        $('.colorpicker-custom-btn').css('background-color', $('.colorpicker-custom').val());
+        $('.custom-label-input').val($('.colorpicker-custom').val());
     });
 
     $.ajax({
         type: "GET",
-        url: "components/autos.json",
+        url: "autos.php",
+        data: {
+            action: 'getdata'
+        },
         dataType: "json",
         success: function (data) {
             autoLaden(data);

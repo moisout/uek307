@@ -10,13 +10,13 @@
     "name": "auto2",
     "kraftstoff": "diesel",
     "farbe": "#41853b",
-    "bauart": "hmm",
+    "bauart": "hm",
     "tank": 0
 }, {
     "id": 2,
     "name": "auto3",
-    "kraftstoff": "disasdel",
+    "kraftstoff": "diesasdasel",
     "farbe": "#1e1e1e",
-    "bauart": "hmm",
+    "bauart": "hm",
     "tank": 1
 }]
