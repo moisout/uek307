@@ -5,7 +5,6 @@ $(function () {
     $('.tabs').tabs();
     $('select').formSelect();
 
-
     $('#msg-btn').on('click', function () {
         M.toast({
             html: 'Message sent'
@@ -15,7 +14,7 @@ $(function () {
 
     $('.date-year').html(`© ${new Date().getFullYear()} Maurice Oegerli`);
 
-    $('.colorpicker-custom').on('change', function(){
+    $('.colorpicker-custom').on('change', function () {
         $('.colorpicker-custom-btn').css('background-color', $('.colorpicker-custom').val());
         $('.custom-label-input').val($('.colorpicker-custom').val());
         $('.custom-label').addClass('active');
@@ -33,10 +32,12 @@ $(function () {
         }
     });
 
-    function autoLaden(autos) {
-        autos.forEach(element => {
-            var datensatz = $(`#auto_liste_${element.id}`);
+    var me = this;
 
+    function autoLaden(autos) {
+        $('.auto-list').html($('#auto_liste_template'));
+        $('#auto_liste_template').show();
+        autos.forEach(element => {
             var template = $('#auto_liste_template').outerHTML();
 
             var datensatz = Mustache.to_html(template, element);
@@ -53,7 +54,7 @@ $(function () {
 
             var id = $(this).parent().attr('data-id');
             var tankfuellung = parseInt($(`#auto_liste_${id}`).find('.tank').html());
-            $(`#auto_liste_${id}`).find('.tank').html( tankfuellung + 1);
+            $(`#auto_liste_${id}`).find('.tank').html(tankfuellung + 1);
 
         });
         $('.edit-btn').on('click', function () {
@@ -63,24 +64,36 @@ $(function () {
         });
         $('.delete-btn').on('click', function () {
             var id = $(this).parent().attr('data-id');
-            $(`#auto_liste_${id}`).remove();
+            $.ajax({
+                url: "autos.php",
+                data: {
+                    action: 'deletedata',
+                    id: id,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    autoLaden(data);
+                }
+            });
 
             M.toast({
                 html: 'Gelöscht'
             });
         });
+
     }
 
-    $('#carForm').submit(function(e){
+    $('#carForm').submit(function (e) {
         var me = this;
 
         var name = $('#name').val();
         var kraftstoff = $('#kraftstoff').val();
         var bauart = $('#bauart').val();
         var farbe = $('#colorfield').val();
+        console.log(farbe);
 
         $.ajax({
-            type: "GET",
+            type: 'GET',
             url: "autos.php",
             data: {
                 action: 'putdata',
@@ -89,9 +102,9 @@ $(function () {
                 bauart: bauart,
                 farbe: farbe
             },
-            dataType: "dataType",
+            dataType: 'json',
             success: function (data) {
-                console.log('success');
+                autoLaden(data);
             }
         });
         e.preventDefault();

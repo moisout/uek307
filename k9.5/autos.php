@@ -32,7 +32,6 @@ if(!$con->select_db(MYSQL_DB)){
 }
 $con->select_db(MYSQL_DB) or die('Datenbankverbindung nicht möglich');
 
-
 $action = $_GET['action'];
 
 switch ($action) {
@@ -43,11 +42,12 @@ switch ($action) {
         $id = $_GET['id'];
         echo 'getdatamitid: ' . $id;
         break;
-    case 'deletedata':
-        echo 'deletedata';
+    case 'errordata':
+        header("HTTP/1.1 401 Unauthorized ");
         break;
     case 'deletedata':
-        echo 'deletedata';
+        $id = $_GET['id'];
+        echo deletecar($id);
         break;
     case 'putdata':
         $name = $_GET['name'];
@@ -55,7 +55,7 @@ switch ($action) {
         $bauart = $_GET['bauart'];
         $farbe = $_GET['farbe'];
 
-        newcar($name, $kraftstoff, $bauart, $farbe);
+        echo newcar($name, $kraftstoff, $bauart, $farbe);
         break;
     default:
         
@@ -66,8 +66,7 @@ $con->close();
 
 function alledaten(){
     global $con;
-    $result = $con->query('SELECT id, name, kraftstoff, farbe, bauart, tank FROM autos');
-
+    $result = $con->query( 'SELECT id, name, kraftstoff, farbe, bauart, tank FROM autos');
     $dataarray = array();
     $dataarray = $result->fetch_all(MYSQLI_ASSOC);
 
@@ -75,5 +74,18 @@ function alledaten(){
 }
 
 function newcar($name, $kraftstoff, $bauart, $farbe){
+    global $con;
 
+    $query = 'INSERT INTO `autos` (`name`, `kraftstoff`, `farbe`, `bauart`) VALUES ("'.$name.'", "'.$kraftstoff.'", "'.$farbe.'", "'.$bauart.'")';
+    
+    $con->query($query);
+
+    return alledaten();
+}
+
+function deletecar($id){
+    global $con;
+    $con->query('DELETE FROM `autos` WHERE `autos`.`id` = ' . $id);
+
+    return alledaten();
 }
