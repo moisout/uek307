@@ -1,5 +1,7 @@
 <?php
 
+parse_str(file_get_contents("php://input"),$put_vars);
+$_REQUEST = array_merge($_REQUEST, $put_vars);
 
 define('MYSQL_HOST',"localhost"); 
 define('MYSQL_USER',"root"); 
@@ -32,30 +34,36 @@ if(!$con->select_db(MYSQL_DB)){
 }
 $con->select_db(MYSQL_DB) or die('Datenbankverbindung nicht möglich');
 
-$action = $_GET['action'];
+
+$action = $_REQUEST['action'];
 
 switch ($action) {
     case 'getdata':
         echo alledaten();
         break;
-    case 'getdatamitid':
-        $id = $_GET['id'];
-        echo 'getdatamitid: ' . $id;
-        break;
     case 'errordata':
         header("HTTP/1.1 401 Unauthorized ");
         break;
     case 'deletedata':
-        $id = $_GET['id'];
+        $id = $_REQUEST['id'];
         echo deletecar($id);
         break;
     case 'putdata':
-        $name = $_GET['name'];
-        $kraftstoff = $_GET['kraftstoff'];
-        $bauart = $_GET['bauart'];
-        $farbe = $_GET['farbe'];
+        $name = $_REQUEST['name'];
+        $kraftstoff = $_REQUEST['kraftstoff'];
+        $bauart = $_REQUEST['bauart'];
+        $farbe = $_REQUEST['farbe'];
 
         echo newcar($name, $kraftstoff, $bauart, $farbe);
+        break;
+    case 'postdata':
+        $name = $_REQUEST['name'];
+        $kraftstoff = $_REQUEST['kraftstoff'];
+        $bauart = $_REQUEST['bauart'];
+        $farbe = $_REQUEST['farbe'];
+        $id = $_REQUEST['îd'];
+
+        echo editcar($id, $name, $kraftstoff, $bauart, $farbe);
         break;
     default:
         
@@ -78,6 +86,16 @@ function newcar($name, $kraftstoff, $bauart, $farbe){
 
     $query = 'INSERT INTO `autos` (`name`, `kraftstoff`, `farbe`, `bauart`) VALUES ("'.$name.'", "'.$kraftstoff.'", "'.$farbe.'", "'.$bauart.'")';
     
+    $con->query($query);
+
+    return alledaten();
+}
+
+function editcar($id, $name, $kraftstoff, $bauart, $farbe){
+    global $con;
+
+    $query = 'UPDATE `autos` SET `name` = '.$name.', `kraftstoff` = '.$kraftstoff.', `farbe` = ' . $farbe. ', `bauart` = '.$bauart.' WHERE `autos`.`id` = '.$id;
+
     $con->query($query);
 
     return alledaten();

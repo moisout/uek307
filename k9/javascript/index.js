@@ -72,34 +72,57 @@ $(function () {
             });
         }
 
-
         e.preventDefault();
+    });
 
-        var asd = new SettingsStorage();
-        asd.printForm();
+    $('.save-btn').on('click', function () {
+        var form = new SettingsStorage();
+        form.saveForm();
+    });
+
+    $('.load-btn').on('click', function () {
+        var form = new SettingsStorage();
+        form.loadForm();
     });
 });
 
-function SettingsStorage(){
-    this.vorname = $('#vorname').val();
-    this.nachname = $('#nachname').val();
-    this.email = $('#email').val();
-    this.password = $('#password').val();
-    this.date = $('#date').val();
-    this.time = $('#time').val();
-    this.gender = $('input[name=gender]').val();
-    this.checker = $('input[name=gender]').val();
-    this.selection = $('#selection>option[selected]').val();
 
-    // this.saveForm = function(){
-    //     this.vorname = $('#vorname').val();
-    //     this.nachname = 
-    // }
+function SettingsStorage() {
+    this.formData = {
+        vorname: $('#vorname').val(),
+        nachname: $('#nachname').val(),
+        email: $('#email').val(),
+        password: $('#password').val(),
+        date: $('#date').val(),
+        time: $('#time').val(),
+        gender: $('input[name=gender]').val(),
+        checker: $('input[name=gender]').val(),
+        selection: $('#selection>option:selected').val()
+    }
 
-    this.printForm = function(){
+
+    this.saveForm = function () {
+        localStorage['formData'] = JSON.stringify(this.formData);
+        console.log(localStorage['formData']);
+    }
+
+    this.loadForm = function(){
+        console.log(localStorage['formData']);
+        this.formData = JSON.parse(localStorage['formData']);
+        $('#vorname').val(this.formData.vorname);
+        $('#nachname').val(this.formData.nachname);
+        $('#email').val(this.formData.email);
+        $('#password').val(this.formData.password);
+        $('#date').val(this.formData.date);
+        $('#time').val(this.formData.time);
+        $('input[name=gender]').val(this.formData.gender);
+        $('input[name=gender]').val(this.formData.checker);
+        $('#selection>option:selected').val(this.formData.selection);
+    }
+
+    this.printForm = function () {
         console.debug(
-            this.vorname,
-
+            this.formData
         )
     }
 }

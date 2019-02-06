@@ -114,7 +114,8 @@
 
     <main>
         <div class="row">
-            <div class="col s12 m8">
+            <div class="col s12 ">
+                <a href="#modal" class="btn modal-trigger">Neu</a>
                 <div id="auto-page" class="col s12">
                     <table class="highlight">
                         <thead>
@@ -152,55 +153,57 @@
                     </table>
                 </div>
             </div>
-            <div class="col s12 m3">
-                <form id="carForm" class="">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="name" type="text" class="validate" required>
-                            <label for="name">Name</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select id="kraftstoff" required>
-                                <option value="" disabled selected>Auswahl</option>
-                                <option value="Benzin">Benzin</option>
-                                <option value="Diesel">Diesel</option>
-                            </select>
-                            <label>Kraftstoff</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select id="bauart" required>
-                                <option value="" disabled selected>Auswahl</option>
-                                <option value="Kombi">Kombi</option>
-                                <option value="Limousine">Limousine</option>
-                                <option value="4x4">4x4</option>
-                                <option value="SUV">SUV</option>
-                            </select>
-                            <label>Bauart</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <input id="farbe" type="color" class="colorpicker-custom">
-                            <a href="#" class="btn colorpicker-custom-btn"></a>
-                            <div class="input-field s12">
-                                <input id="colorfield" type="text" class="custom-label-input custom-labels">
-                                <label for="colorfield" class="custom-label">Farbe</label>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <form id="carForm" current-record="none">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="name" type="text" class="validate" required>
+                                <label for="name">Name</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input class="btn" id="reset" type="reset">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="kraftstoff" required>
+                                    <option value="" disabled selected>Auswahl</option>
+                                    <option value="Benzin">Benzin</option>
+                                    <option value="Diesel">Diesel</option>
+                                </select>
+                                <label>Kraftstoff</label>
+                            </div>
                         </div>
-                        <div class="input-field col s6">
-                            <input class="btn right" id="submit" type="submit">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select id="bauart" required>
+                                    <option value="" disabled selected>Auswahl</option>
+                                    <option value="Kombi">Kombi</option>
+                                    <option value="Limousine">Limousine</option>
+                                    <option value="4x4">4x4</option>
+                                    <option value="SUV">SUV</option>
+                                </select>
+                                <label>Bauart</label>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="row">
+                            <div class="col s12">
+                                <input id="farbe" type="color" class="colorpicker-custom">
+                                <a href="#" class="btn colorpicker-custom-btn"></a>
+                                <div class="input-field s12">
+                                    <input id="colorfield" type="text" class="custom-label-input custom-labels">
+                                    <label for="colorfield" class="custom-label">Farbe</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input class="btn" id="reset" type="reset">
+                            </div>
+                            <div class="input-field col s6">
+                                <input class="btn right" id="submit" type="submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
