@@ -18,6 +18,7 @@ $(function () {
     $('.colorpicker-custom').on('change', function(){
         $('.colorpicker-custom-btn').css('background-color', $('.colorpicker-custom').val());
         $('.custom-label-input').val($('.colorpicker-custom').val());
+        $('.custom-label').addClass('active');
     });
 
     $.ajax({
@@ -69,6 +70,32 @@ $(function () {
             });
         });
     }
+
+    $('#carForm').submit(function(e){
+        var me = this;
+
+        var name = $('#name').val();
+        var kraftstoff = $('#kraftstoff').val();
+        var bauart = $('#bauart').val();
+        var farbe = $('#colorfield').val();
+
+        $.ajax({
+            type: "GET",
+            url: "autos.php",
+            data: {
+                action: 'putdata',
+                name: name,
+                kraftstoff: kraftstoff,
+                bauart: bauart,
+                farbe: farbe
+            },
+            dataType: "dataType",
+            success: function (data) {
+                console.log('success');
+            }
+        });
+        e.preventDefault();
+    });
 });
 
 function returnId(id) {
