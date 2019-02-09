@@ -1,4 +1,4 @@
-$(function () {
+  $(function () {
     $('.sidenav').sidenav();
     $('.parallax').parallax();
     $('.tooltipped').tooltip();
@@ -70,10 +70,17 @@ $(function () {
 
             var autoListe = $(`#auto_liste_${id}`);
 
+            $('#name').siblings('label').addClass('active');
+            $('#kraftstoff').siblings('label').addClass('active');
+            $('#bauart').siblings('label').addClass('active');
+            $('#colorfield').siblings('label').addClass('active');
+
             $('#name').val(autoListe.find('.name').text());
             $('#kraftstoff').val(autoListe.find('.kraftstoff').html());
             $('#bauart').val(autoListe.find('.bauart').html());
             $('#colorfield').val(autoListe.find('.farbe').html());
+
+            $('select').formSelect();
 
             modal.open();
         });
@@ -128,7 +135,7 @@ $(function () {
                 type: 'POST',
                 url: "autos.php",
                 data: {
-                    action: 'editdata',
+                    action: 'postdata',
                     id: id,
                     name: name,
                     kraftstoff: kraftstoff,

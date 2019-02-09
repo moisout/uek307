@@ -61,7 +61,7 @@ switch ($action) {
         $kraftstoff = $_REQUEST['kraftstoff'];
         $bauart = $_REQUEST['bauart'];
         $farbe = $_REQUEST['farbe'];
-        $id = $_REQUEST['îd'];
+        $id = $_REQUEST['id'];
 
         echo editcar($id, $name, $kraftstoff, $bauart, $farbe);
         break;
@@ -94,7 +94,7 @@ function newcar($name, $kraftstoff, $bauart, $farbe){
 function editcar($id, $name, $kraftstoff, $bauart, $farbe){
     global $con;
 
-    $query = 'UPDATE `autos` SET `name` = '.$name.', `kraftstoff` = '.$kraftstoff.', `farbe` = ' . $farbe. ', `bauart` = '.$bauart.' WHERE `autos`.`id` = '.$id;
+    $query = 'UPDATE `autos` SET `name` = "'.$name.'", `kraftstoff` = "' . $kraftstoff . '", `farbe` = "' . $farbe. '", `bauart` = "'.$bauart.'" WHERE `autos`.`id` = "'.$id.'"';
 
     $con->query($query);
 
