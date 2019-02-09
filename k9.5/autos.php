@@ -65,6 +65,12 @@ switch ($action) {
 
         echo editcar($id, $name, $kraftstoff, $bauart, $farbe);
         break;
+    case 'tankfuellung':
+        $tank = $_REQUEST['tank'];
+        $id = $_REQUEST['id'];
+
+        echo tankfuellen($id, $tank);
+        break;
     default:
         
         break;
@@ -95,6 +101,16 @@ function editcar($id, $name, $kraftstoff, $bauart, $farbe){
     global $con;
 
     $query = 'UPDATE `autos` SET `name` = "'.$name.'", `kraftstoff` = "' . $kraftstoff . '", `farbe` = "' . $farbe. '", `bauart` = "'.$bauart.'" WHERE `autos`.`id` = "'.$id.'"';
+
+    $con->query($query);
+
+    return alledaten();
+}
+
+function tankfuellen($id, $tank){
+    global $con;
+
+    $query = 'UPDATE `autos` SET `tank` = '.$tank.' WHERE `autos`.`id` = "'.$id.'"';
 
     $con->query($query);
 

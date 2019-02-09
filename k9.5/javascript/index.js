@@ -54,13 +54,27 @@
         $('#auto_liste_template').hide();
 
         $('.fuel-btn').on('click', function () {
-            M.toast({
-                html: 'Betankt'
-            });
-
             var id = $(this).parent().attr('data-id');
             var tankfuellung = parseInt($(`#auto_liste_${id}`).find('.tank').html());
             $(`#auto_liste_${id}`).find('.tank').html(tankfuellung + 1);
+
+            $.ajax({
+                type: 'POST',
+                url: "autos.php",
+                data: {
+                    action: 'tankfuellung',
+                    id: id,
+                    tank: tankfuellung + 1,                    
+                },
+                dataType: 'json',
+                success: function (data) {
+                    autoLaden(data);
+
+                    M.toast({
+                        html: 'Betankt'
+                    });
+                }
+            });
 
         });
         $('.edit-btn').on('click', function () {
