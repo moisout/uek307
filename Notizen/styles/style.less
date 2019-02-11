@@ -1,0 +1,64 @@
+@primary-color: #121212;
+
+
+.custom-range-field {
+    position: relative;
+
+    .custom-range-label {
+        position: absolute;
+        top: -20px;
+        left: 0;
+        background-color: @primary-color;
+        color: #fff;
+        display: none;
+    }
+}
+
+blockquote {
+    border-left-color: @primary-color;
+}
+
+text-container {
+    margin: 20px;
+}
+
+input{
+    color: #1e1e1e;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.colorpicker-custom{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    z-index: 10;
+    margin-top: 15px;
+}
+
+.colorpicker-custom-btn{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    margin-top: 15px;
+    background-color: black;
+}
+
+.custom-labels{
+    padding-left: 60px !important;
+    box-sizing: border-box !important;
+}
+
+.custom-label{
+    padding-left: 80px !important;
+    box-sizing: border-box !important;
+}

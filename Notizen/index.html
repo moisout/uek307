@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notizen</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet/less" type="text/css" href="styles/style.less">
+    <script src="javascript/less.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <script src="javascript/index.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar-fixed">
+        <nav class="nav-extended">
+            <div class="nav-wrapper grey darken-3">
+                <a href="#" class="brand-logo right logo-padding">AJAX Loading</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars material-icons"></i></a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li>
+                        <a id="newNote" href="#" onClick="newNote()">
+                            <i class="fas fa-plus material-icons left"></i>Neue Notiz
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a id="newNote" href="#" onClick="newNote()">
+                <i class="fas fa-plus material-icons left"></i>Neue Notiz
+            </a>
+        </li>
+    </ul>
+
+    <main>
+        <div class="row">
+
+            <div class="container notes-container">
+                <div id="note-template" class="card">
+                    <div class="card-content">
+                        <span class="card-title noteTitle">{{title}}</span>
+                        <p class="noteContent">{{content}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a onclick="editNote('{{id}}')" href="#">Bearbeiten</a>
+                        <a onclick="deleteNote('{{id}}')" href="#">Löschen</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <form id="noteForm" current-record="none">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="noteTitle" type="text" class="validate" required>
+                                <label for="noteTitle">Titel</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="noteContent" class="validate materialize-textarea" required></textarea>
+                                <label for="noteContent">Inhalt</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input class="btn" id="reset" type="reset">
+                            </div>
+                            <div class="input-field col s6">
+                                <input class="btn right" id="submit" type="submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer class="page-footer grey darken-3 sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Neque, et reiciendis! Magni sint, saepe ut quisquam rem nihil ipsa dicta debitis consequuntur
+                        cupiditate tempora totam, quis impedit ad eius! Enim.
+                        content.</p>
+                    <a class="waves-effect btn tooltipped" id="msg-btn" data-position="bottom" data-tooltip="Click to send a Message">Send
+                        Message</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container date-year">
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="javascript/index.js"></script>
+</body>
+
+</html>

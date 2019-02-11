@@ -1,11 +1,11 @@
-  $(function () {
+$(function () {
     $('.sidenav').sidenav();
     $('.parallax').parallax();
     $('.tooltipped').tooltip();
     $('.tabs').tabs();
     $('select').formSelect();
     $('.modal').modal({
-        onCloseEnd: function(){
+        onCloseEnd: function () {
             $('#carForm').attr('current-record', 'none');
             console.log('test');
         }
@@ -35,6 +35,14 @@
         dataType: "json",
         success: function (data) {
             autoLaden(data);
+        },
+        error: function (data) {
+            var response = data.responseJSON;
+            response.forEach(element => {
+                M.toast({
+                    html: `Fehler bei ${element}`
+                })
+            });
         }
     });
 
@@ -64,7 +72,7 @@
                 data: {
                     action: 'tankfuellung',
                     id: id,
-                    tank: tankfuellung + 1,                    
+                    tank: tankfuellung + 1,
                 },
                 dataType: 'json',
                 success: function (data) {
@@ -72,6 +80,14 @@
 
                     M.toast({
                         html: 'Betankt'
+                    });
+                },
+                error: function (data) {
+                    var response = data.responseJSON;
+                    response.forEach(element => {
+                        M.toast({
+                            html: `Fehler bei ${element}`
+                        })
                     });
                 }
             });
@@ -110,6 +126,14 @@
                 dataType: 'json',
                 success: function (data) {
                     autoLaden(data);
+                },
+                error: function (data) {
+                    var response = data.responseJSON;
+                    response.forEach(element => {
+                        M.toast({
+                            html: `Fehler bei ${element}`
+                        })
+                    });
                 }
             });
 
@@ -128,10 +152,10 @@
 
         if (id == 'none') {
             $.ajax({
-                type: 'PUT',
+                type: 'POST',
                 url: "autos.php",
                 data: {
-                    action: 'putdata',
+                    action: 'postdata',
                     name: name,
                     kraftstoff: kraftstoff,
                     bauart: bauart,
@@ -142,14 +166,23 @@
                     autoLaden(data);
                     $('#reset').click();
                     M.Modal.getInstance($('#modal')).close();
+                },
+                error: function (data) {
+                    var response = data.responseJSON;
+                    response.forEach(element => {
+                        M.toast({
+                            html: `Fehler bei ${element}`
+                        });
+                        $(`#${element}`).addClass('invalid');
+                    });
                 }
             });
         } else {
             $.ajax({
-                type: 'POST',
+                type: 'PUT',
                 url: "autos.php",
                 data: {
-                    action: 'postdata',
+                    action: 'putdata',
                     id: id,
                     name: name,
                     kraftstoff: kraftstoff,
@@ -161,6 +194,15 @@
                     autoLaden(data);
                     $('#reset').click();
                     M.Modal.getInstance($('#modal')).close();
+                },
+                error: function (data) {
+                    var response = data.responseJSON;
+                    response.forEach(element => {
+                        M.toast({
+                            html: `Fehler bei ${element}`
+                        });
+                        $(`#${element}`).addClass('invalid');
+                    });
                 }
             });
         }
