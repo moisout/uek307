@@ -17,6 +17,14 @@ $(function () {
         dataType: "json",
         success: function (response) {
             reloadNotes(response);
+        },
+        error: function (data) {
+            var response = data.responseJSON;
+            response.forEach(element => {
+                M.toast({
+                    html: `Fehler bei ${element}`
+                })
+            });
         }
     });
 });
@@ -31,6 +39,7 @@ function reloadNotes(data) {
         let noteElement = Mustache.to_html(template, element);
 
         $(noteElement).prependTo('.notes-container').prop('id', `note_${element.id}`);
+        $(`note_${element.id}`).children();
     });
 
     $('#note-template').hide();
@@ -52,6 +61,14 @@ function deleteNote(id) {
             $('#reset').click();
 
             modal.close();
+        },
+        error: function (data) {
+            var response = data.responseJSON;
+            response.forEach(element => {
+                M.toast({
+                    html: `Fehler bei ${element}`
+                })
+            });
         }
     });
 }
@@ -60,7 +77,7 @@ function editNote(id) {
     $('#reset').click();
     let modal = M.Modal.getInstance($('#modal'));
     let note = $(`#note_${id}`);
-    $('#noteForm').attr('current-record', id);
+    $('#currentRecord').val(id);
 
     $('#noteTitle').siblings('label').addClass('active');
     $('#noteContent').siblings('label').addClass('active');
@@ -74,22 +91,22 @@ function editNote(id) {
 function newNote() {
     $('#reset').click();
     let modal = M.Modal.getInstance($('#modal'));
-    $('#noteForm').attr('current-record', 'none');
+    $('#currentRecord').val('none');
 
     modal.open();
 }
 
 $('#modal').submit(function (e) {
-    let intent = $('#noteForm').attr('current-record');
+    let intent = $('#currentRecord').val();
     let title = $('#noteTitle').val();
     let content = $('#noteContent').val();
 
-    if (intent === 'none') {
+    if (intent === '') {
         $.ajax({
-            type: "PUT",
+            type: "POST",
             url: "notes.php",
             data: {
-                action: 'putdata',
+                action: 'postdata',
                 title: title,
                 content: content
             },
@@ -101,14 +118,22 @@ $('#modal').submit(function (e) {
                 $('#reset').click();
 
                 modal.close();
+            },
+            error: function (data) {
+                var response = data.responseJSON;
+                response.forEach(element => {
+                    M.toast({
+                        html: `Fehler bei ${element}`
+                    })
+                });
             }
         });
     } else {
         $.ajax({
-            type: "POST",
+            type: "PUT",
             url: "notes.php",
             data: {
-                action: 'postdata',
+                action: 'putdata',
                 id: intent,
                 title: title,
                 content: content
@@ -121,6 +146,14 @@ $('#modal').submit(function (e) {
                 $('#reset').click();
 
                 modal.close();
+            },
+            error: function (data) {
+                var response = data.responseJSON;
+                response.forEach(element => {
+                    M.toast({
+                        html: `Fehler bei ${element}`
+                    })
+                });
             }
         });
     }

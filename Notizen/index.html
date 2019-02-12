@@ -44,8 +44,7 @@
     </ul>
 
     <main>
-        <div class="row">
-
+        <div class="column">
             <div class="container notes-container">
                 <div id="note-template" class="card">
                     <div class="card-content">
@@ -62,6 +61,7 @@
             <div id="modal" class="modal">
                 <div class="modal-content">
                     <form id="noteForm" current-record="none">
+                        <input id="currentRecord" type="number">
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="noteTitle" type="text" class="validate" required>
@@ -74,6 +74,15 @@
                                 <label for="noteContent">Inhalt</label>
                             </div>
                         </div>
+                        <div class="row">
+                            <input id="farbe" type="color" class="colorpicker-custom">
+                            <a href="#" class="btn colorpicker-custom-btn"></a>
+                            <div class="input-field s12">
+                                <input id="color" type="text" class="custom-label-input custom-labels">
+                                <label for="color" class="custom-label">Farbe</label>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="input-field col s6">
                                 <input class="btn" id="reset" type="reset">

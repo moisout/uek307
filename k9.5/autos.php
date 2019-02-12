@@ -24,13 +24,6 @@ if(!$con->select_db(MYSQL_DB)){
         bauart VARCHAR(255) NOT NULL,
         tank INTEGER NOT NULL DEFAULT 0
     )");
-
-    $con->query("INSERT INTO autos (name, kraftstoff, farbe, bauart) 
-    VALUES ('Passat', 'Diesel', '#000000', 'Limousine');");
-    $con->query("INSERT INTO autos (name, kraftstoff, farbe, bauart) 
-    VALUES ('asdfg', 'Benzin', '#59e331', '4x4');");
-    $con->query("INSERT INTO autos (name, kraftstoff, farbe, bauart) 
-    VALUES ('testauto4', 'Benzin', '#d86612', 'SUV');");
 }
 $con->select_db(MYSQL_DB) or die('Datenbankverbindung nicht möglich');
 
@@ -49,7 +42,7 @@ switch ($action) {
             $errors[] = 'id';
         }
 
-        if(count($errors)){
+        if(count($errors) == 0){
             echo deletecar($id);
             http_response_code(200);
         }else{
@@ -152,6 +145,10 @@ function validateMail($mail){
         $mail = htmlspecialchars($mail);
 
         if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+            $check = false;
+        }
+
+        if(!filter_var($mail, '/[,]/')){
             $check = false;
         }
 

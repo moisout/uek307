@@ -1,15 +1,15 @@
 $(function () {
-    $('.sidenav').sidenav();
-    $('.parallax').parallax();
-    $('.tooltipped').tooltip();
-    $('.tabs').tabs();
-    $('select').formSelect();
+    // --------------------------------------------------------------------------------------------
+    // Initialisierung der CSS-Komponenten
+    // --------------------------------------------------------------------------------------------
+    M.AutoInit();
     $('.modal').modal({
         onCloseEnd: function () {
             $('#carForm').attr('current-record', 'none');
             console.log('test');
         }
     });
+
 
     $('#msg-btn').on('click', function () {
         M.toast({
@@ -26,6 +26,9 @@ $(function () {
         $('.custom-label').addClass('active');
     });
 
+    // --------------------------------------------------------------------------------------------
+    // Autos werden geladen
+    // --------------------------------------------------------------------------------------------
     $.ajax({
         type: "GET",
         url: "autos.php",
@@ -46,8 +49,9 @@ $(function () {
         }
     });
 
-    var me = this;
-
+    // --------------------------------------------------------------------------------------------
+    // Funktion fürs (Neu) laden
+    // --------------------------------------------------------------------------------------------
     function autoLaden(autos) {
         $('.auto-list').html($('#auto_liste_template'));
         $('#auto_liste_template').show();
@@ -93,6 +97,10 @@ $(function () {
             });
 
         });
+
+        // --------------------------------------------------------------------------------------------
+        // Bearbeiten eines Autos
+        // --------------------------------------------------------------------------------------------
         $('.edit-btn').on('click', function () {
             var id = $(this).parent().attr('data-id');
             $('#carForm').attr('current-record', id);
@@ -114,6 +122,10 @@ $(function () {
 
             modal.open();
         });
+
+        // --------------------------------------------------------------------------------------------
+        // Löschen eines Autos
+        // --------------------------------------------------------------------------------------------
         $('.delete-btn').on('click', function () {
             var id = $(this).parent().attr('data-id');
             $.ajax({
@@ -143,6 +155,9 @@ $(function () {
         });
     }
 
+    // --------------------------------------------------------------------------------------------
+    // Formular absenden
+    // --------------------------------------------------------------------------------------------
     $('#carForm').submit(function (e) {
         var name = $('#name').val();
         var kraftstoff = $('#kraftstoff').val();
@@ -210,10 +225,6 @@ $(function () {
         e.preventDefault();
     });
 });
-
-function returnId(id) {
-    console.log(id);
-}
 
 jQuery.fn.extend({
     outerHTML: function () {

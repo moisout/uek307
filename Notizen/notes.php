@@ -14,14 +14,16 @@ if(!$con->select_db(MYSQL_DB)){
     $createdb = "CREATE DATABASE IF NOT EXISTS " . MYSQL_DB . " DEFAULT CHARACTER SET utf8";
     $con->query($createdb);
 
-    $con->query("USE " . MYSQL_DB);
-
-    $con->query("CREATE TABLE IF NOT EXISTS notes (
-        id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        title VARCHAR(255) NOT NULL,
-        content VARCHAR(512) NOT NULL
-    )");
+    
 }
+$con->query("USE " . MYSQL_DB);
+
+$con->query("CREATE TABLE IF NOT EXISTS notes (
+    id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    content VARCHAR(512) NOT NULL,
+    color VARCHAR(7) NOT NULL
+)");
 $con->select_db(MYSQL_DB) or die('Datenbankverbindung nicht möglich');
 
 
@@ -33,22 +35,77 @@ switch ($action) {
         echo alleDaten();
         break;
     case 'deletedata':
-        $id = $_REQUEST['id'];
+        $errors = array();
 
-        echo deleteNote($id);
-        break;
-    case 'putdata':
-        $title = $_REQUEST['title'];
-        $content = $_REQUEST['content'];
+        $id = validateNumber($_REQUEST['id']);
 
-        echo newNote($title, $content);
+        if(!$id){
+            $errors[] = 'id';
+        }
+
+        if(count($errors) == 0){
+            echo deleteNote($id);
+            http_response_code(200);
+        }else{
+            echo json_encode($errors);
+            http_response_code(500);
+        }
         break;
     case 'postdata':
-        $id = $_REQUEST['id'];
-        $title = $_REQUEST['title'];
-        $content = $_REQUEST['content'];
+        $errors = array();
 
-        echo editNote($id, $title, $content);
+        $title = validateString($_REQUEST['title']);
+        $content = validateString($_REQUEST['content']);
+        $color = validateString($_REQUEST['color']);
+
+        if(!$title){
+            $errors[] = 'title';
+        }
+        if(!$content){
+            $errors[] = 'content';
+        }
+        if(!$color){
+            $errors[] = 'color';
+        }
+
+        if(count($errors) == 0){
+            echo newNote($title, $content, $color);
+            http_response_code(200);
+        }
+        else{
+            echo json_encode($errors);
+            http_response_code(500);
+        }
+        break;
+    case 'putdata':
+        $errors = array();
+
+        $id = validateString($_REQUEST['id']);
+        $title = validateString($_REQUEST['title']);
+        $content = validateString($_REQUEST['content']);
+        $color = validateString($_REQUEST['color']);
+
+        if(!$id){
+            $errors[] = 'id';
+        }
+        if(!$title){
+            $errors[] = 'title';
+        }
+        if(!$content){
+            $errors[] = 'content';
+        }
+        if(!$color){
+            $errors[] = 'color';
+        }
+
+        if(count($errors) == 0){
+            echo editNote($id, $title, $content, $color);
+            http_response_code(200);
+        }
+        else{
+            echo json_encode($errors);
+            http_response_code(500);
+        }
         break;
     default: 
         break;
@@ -58,27 +115,27 @@ $con->close();
 
 function alleDaten(){
     global $con;
-    $result = $con->query( 'SELECT id, title, content FROM notes');
+    $result = $con->query( 'SELECT id, title, content, color FROM notes');
     $dataarray = array();
     $dataarray = $result->fetch_all(MYSQLI_ASSOC);
 
     return json_encode($dataarray);
 }
 
-function newNote($title, $content){
+function newNote($title, $content, $color){
     global $con;
 
-    $query = 'INSERT INTO `notes` (`title`, `content`) VALUES ("'.$title.'", "'.$content.'")';
+    $query = 'INSERT INTO `notes` (`title`, `content`, `color`) VALUES ("'.$title.'", "'.$content.'", "'.$color.'")';
     
     $con->query($query);
 
     return alledaten();
 }
 
-function editNote($id, $title, $content){
+function editNote($id, $title, $content, $color){
     global $con;
 
-    $query = 'UPDATE `notes` SET `title` = "'.$title.'", `content` = "' . $content . '" WHERE `notes`.`id` = "'.$id.'"';
+    $query = 'UPDATE `notes` SET `title` = "'.$title.'", `content` = "' . $content . '", `color` = "'.$color.'" WHERE `notes`.`id` = "'.$id.'"';
 
     $con->query($query);
 

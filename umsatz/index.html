@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Umsatztabelle Maurice Oegerli</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet/less" type="text/css" href="styles/style.less">
+    <script src="javascript/less.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <script src="javascript/index.js"></script>
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav class="nav-extended">
+            <div class="nav-wrapper grey darken-3">
+                <a href="#" class="brand-logo right logo-padding">Umsatztabelle</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars material-icons"></i></a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li>
+                        <a href="#modal" class=" modal-trigger">
+                            <i class="fas fa-plus material-icons left"></i>Neuer Eintrag
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <a href="#modal" class="modal-trigger">
+                <i class="fas fa-plus material-icons left"></i>Neuer Eintrag
+            </a>
+        </li>
+    </ul>
+
+    <main>
+        <div class="row">
+            <div class="col s12 ">
+                <div id="umsatz-page" class="col s12">
+                    <table class="highlight responsive-table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Kunde Name</th>
+                                <th>Filiale</th>
+                                <th>Umsatz in CHF</th>
+                                <th>Kunde seit</th>
+                                <th>Anzahl Bestellungen</th>
+                            </tr>
+                        </thead>
+                        <tbody class="umsatz-list">
+                            <tr class="umsatz-list-content" id="umsatz_liste_template" data-id="{{umsatz_id}}">
+                                <td class="umsatz_id">{{umsatz_id}}</td>
+                                <td class="umsatz_kunde_name">{{umsatz_kunde_name}}</td>
+                                <td class="umsatz_filiale">{{umsatz_filiale}}</td>
+                                <td class="umsatz_umsatz">{{umsatz_umsatz}}</td>
+                                <td class="umsatz_kunde_seit">{{umsatz_kunde_seit}}</td>
+                                <td class="umsatz_anzbestellungen">{{umsatz_anzbestellungen}}</td>
+                                <td><a class="delete-btn btn-flat waves-effect waves-red tooltipped" data-position="bottom"
+                                        data-tooltip="Löschen"><i class="fas fa-trash material-icons"></i></a>
+                                    <a class="edit-btn btn-flat waves-effect waves-teal tooltipped" data-position="bottom"
+                                        data-tooltip="Bearbeiten"><i class="fas fa-edit material-icons"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <h4 class='modal-title'>Eintrag bearbeiten</h4>
+                    <form id="umsatzForm" current-record="none">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="umsatz_kunde_name" type="text" class="validate" required>
+                                <label for="umsatz_kunde_name">Kunde Name *</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input value="St. Gallen" id="umsatz_filiale" type="text" class="validate" required>
+                                <label for="umsatz_filiale">Filiale *</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="umsatz_umsatz" type="number" class="validate" step="0.01" required>
+                                <label for="umsatz_umsatz">Umsatz in CHF *</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="umsatz_kunde_seit" type="text" class="validate datepicker">
+                                <label for="umsatz_kunde_seit">Kunde seit</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="umsatz_anzbestellungen" type="number" class="validate">
+                                <label for="umsatz_anzbestellungen">Anzahl Bestellungen</label>
+                            </div>
+                        </div>
+                        <label>* Pflichtfeld</label>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input class="btn" id="reset" type="reset">
+                            </div>
+                            <div class="input-field col s6">
+                                <input class="btn right" id="submit" type="submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 
+
+    <footer class="page-footer grey darken-3 sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Neque, et reiciendis! Magni sint, saepe ut quisquam rem nihil ipsa dicta debitis consequuntur
+                        cupiditate tempora totam, quis impedit ad eius! Enim.
+                        content.</p>
+                    <a class="waves-effect btn tooltipped" id="msg-btn" data-position="bottom" data-tooltip="Click to send a Message">Send
+                        Message</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container date-year">
+            </div>
+        </div>
+    </footer>
+ -->
+
+
+</body>
+
+</html>
